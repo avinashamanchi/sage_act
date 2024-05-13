@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day Planner</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #333;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    label {
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="time"],
+    input[type="date"],
+    input[type="file"],
+    button {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #e99f9f;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    button {
+        background-color: #007bff;
+        color: #f27fdd;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        background-color: #c9f9df;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .task-img {
+        max-width: 100px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Day Planner</h1>
+
+<div>
+    <label for="task">Task:</label>
+    <input type="text" id="task">
+    <label for="time">Time:</label>
+    <input type="time" id="time">
+    <label for="date">Date:</label>
+    <input type="date" id="date">
+    <label for="image">Image:</label>
+    <input type="file" id="image">
+    <button onclick="addTask()">Add Task</button>
+</div>
+
+<ul id="taskList"></ul>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    loadTasks();
+});
+
+function addTask() {
+    var taskInput = document.getElementById("task");
+    var timeInput = document.getElementById("time");
+    var dateInput = document.getElementById("date");
+    var imageInput = document.getElementById("image");
+
+    var task = taskInput.value.trim();
+    var time = timeInput.value.trim();
+    var date = dateInput.value;
+    var image = imageInput.files[0]; 
+
+    if (task === "" || time === "" || date === "") {
+        alert("Please enter task, time, and date.");
+        return;
+    }
+
+    var taskItem = document.createElement("li");
+    taskItem.textContent = task + " - " + time + " - " + date;
+
+    if (image) {
+        var img = document.createElement("img");
+        img.src = URL.createObjectURL(image);
+        img.classList.add("task-img");
+        taskItem.appendChild(img);
+    }
+
+    document.getElementById("taskList").appendChild(taskItem);
+
+    saveTask(taskItem.textContent);
+
+    taskInput.value = "";
+    timeInput.value = "";
+    dateInput.value = "";
+    imageInput.value = ""; 
+}
+
+function saveTask(task) {
+    var userId = getUserId(); 
+    var tasks = JSON.parse(localStorage.getItem("tasks_" + userId)) || [];
+    tasks.push(task);
+    localStorage.setItem("tasks_" + userId, JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    var userId = getUserId();
+    var tasks = JSON.parse(localStorage.getItem("tasks_" + userId)) || [];
+    var taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+    tasks.forEach(function(task) {
+        var taskItem = document.createElement("li");
+        taskItem.textContent = task;
+        taskList.appendChild(taskItem);
+    });
+}
+
+function getUserId() {
+   
+    return Math.random().toString(36).substr(2, 9); 
+}
+</script>
+
+</body>
+</html>

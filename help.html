@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Help</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    button {
+        padding: 20px 40px; 
+        font-size: 24px; 
+        width: 100%;
+        height: 100%;
+        background-color: #f00;
+        color: #fff;
+        border: none;
+        border-radius: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #d00;
+    }
+</style>
+</head>
+<body>
+
+<button onclick="chooseEmergency()">Select an Emergency Number</button>
+
+<script>
+function chooseEmergency() {
+    var options = {
+        "911": "tel:911",
+        "Police (Non-Emergency)": "tel:123456789",
+        "Fire Department": "tel:987654321"
+    };
+
+    var selection = prompt("Please choose an emergency number:\n\n1. 911\n2. Police (Non-Emergency)\n3. Fire Department");
+
+    if (selection) {
+        var selectedNumber = options[selection];
+        if (selectedNumber) {
+            window.location.href = selectedNumber;
+        } else {
+            alert("Invalid selection. Please choose a valid option.");
+        }
+    }
+}
+</script>
+
+</body>
+</html>

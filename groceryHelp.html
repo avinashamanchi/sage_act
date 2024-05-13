@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grocery Help & Cooking Tips for Elderly</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    h1, h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .grocery-help, .cooking-tips {
+        max-width: 600px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+    }
+
+    input[type="text"] {
+        width: 70%;
+        padding: 10px;
+        border-radius: 5px 0 0 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        padding: 10px 20px;
+        border-radius: 0 5px 5px 0;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Grocery Help & Cooking Tips for Elderly</h1>
+    <div class="grocery-help">
+        <h2>Grocery Help</h2>
+        <p>If you need assistance with grocery shopping, please enter your address below:</p>
+        <form id="groceryForm" onsubmit="submitForm(); return false;">
+            <input type="text" id="addressInput" placeholder="Enter your address" required>
+            <button type="submit">Get Help</button>
+        </form>
+    </div>
+    <div class="cooking-tips">
+        <h2>Cooking Tips</h2>
+        <p>Here are some basic cooking tips and easy-to-access recipes:</p>
+        <ul>
+            <li><a href="https://www.allrecipes.com/recipes/16369/soups-stews-and-chili/soup/">Simple Soup Recipe</a></li>
+            <li><a href="https://www.allrecipes.com/recipe/67700/rich-pasta-for-the-poor-kitchen/">Easy Pasta Recipe</a></li>
+            <li><a href="https://www.delish.com/cooking/g1590/easy-lunch-sandwiches/">Quick Sandwich Ideas</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+function submitForm() {
+    var address = document.getElementById("addressInput").value.trim();
+    if (address === "") {
+        alert("Please enter your address.");
+        return;
+    }
+    alert("Your request for grocery help has been submitted. Volunteers will contact you shortly.");
+    document.getElementById("addressInput").value = "";
+}
+</script>
+
+</body>
+</html>
+

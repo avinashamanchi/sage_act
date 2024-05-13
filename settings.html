@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Settings</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f28d8d;
+            height: 100vh; 
+        }
+
+        form {
+            width: 80%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #8aaafc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 80%; 
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post" id="settingsForm">
+        <h2>Personal Settings</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById("settingsForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var inputs = document.querySelectorAll("input:not([type='submit'])");
+            inputs.forEach(function(input) {
+                input.setAttribute("readonly", "readonly");
+            });
+
+        });
+    </script>
+</body>
+</html>

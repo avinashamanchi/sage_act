@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat with Us!</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #36393f;
+    }
+
+    .chat-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+    }
+
+    .chat-box {
+        background-color: #2f3136;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        height: 500px;
+        overflow: hidden;
+    }
+
+    .chat-header {
+        background-color: #36393f;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #484b52;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .profile-picture {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .chat-header-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chat-messages {
+        overflow-y: auto;
+        padding: 10px;
+        max-height: 370px;
+    }
+
+    .message {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .sender {
+        background-color: #7289da;
+        color: #fff;
+        align-self: flex-end;
+    }
+
+    .receiver {
+        background-color: #40444b;
+        color: #fff;
+    }
+
+    .message-body {
+        padding: 8px 12px;
+        border-radius: 8px;
+    }
+</style>
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-box">
+        <div class="chat-header">
+            <div class="chat-header-content">
+                <img class="profile-picture" src="unnamed.png" alt="Profile Picture">
+                <div>Senior Chat</div>
+            </div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+        </div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        var messageInput = document.getElementById("message-input");
+        var messageText = messageInput.value.trim();
+        if (messageText !== "") {
+            appendMessage("sender", messageText);
+            messageInput.value = "";
+            messageInput.focus();
+            
+           
+            setTimeout(function() {
+                appendMessage("receiver", "This is a response from the server. We will be with you shortly.");
+            }, 1000);
+        }
+    }
+
+    function appendMessage(type, text) {
+        var messagesContainer = document.getElementById("chat-messages");
+        var messageElement = document.createElement("div");
+        messageElement.classList.add("message", type);
+        var messageBody = document.createElement("div");
+        messageBody.classList.add("message-body");
+        messageBody.textContent = text;
+        messageElement.appendChild(messageBody);
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+</script>
+</body>
+</html>

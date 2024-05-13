@@ -1,0 +1,31 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-image: url('path/to/image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.button {
+    background-color: #b794c9;
+    margin-left: 28px;
+    margin-right: 29px;
+    margin-top: 50px;
+    border-radius: 50%;
+    width: 300px;
+    height: 100px;
+    background-color: black;
+    color: white;
+
+}
+
+body {
+    background-image: url("https://t3.ftcdn.net/jpg/06/80/35/80/360_F_680358031_rZ3bhwlPeEe081utZAkERT1Q7iUgqiml.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
